@@ -1,6 +1,11 @@
 # Linux美化
 
 ## 目录
+- [x] README.md
+- [x] Forever_by_Shady_S.jpg
+- [x] molokai.vim 
+- [x] Monaco_Powerline.otf 
+- [x] vimrc.txt
 
 ---
 ## 美化
@@ -28,6 +33,7 @@
 	`sudo apt install gdebi`
 - 卸载libreoffice 安装 WPS(可选)<br>
 	`sudo apt remove libreoffice-common`<br>
+	从http://www.wps.cn/product/wpslinux/ 上下载WPS
 	`sudo dpkg -i wps-office_10.1.0.6757_amd64.deb`
 - 卸载firefox 安装 Chrome(可选)<br>
 	`sudo apt remove firefox`<br>
