@@ -6,6 +6,8 @@
 ## 美化
 ### I. 初步系统优化
 - 更改系统时间
+- 安装python<br>
+	`sudo apt install python`
 - 安装git并添加ssh密钥<br>
 	`sudo apt install git`<br>
 	`git config --global user.name "your_name"`<br>
@@ -38,7 +40,7 @@
 - 安装vim<br>
 	`sudo apt install vim`
 - 菜单栏位置<br>
-	`gsettings set com.canonical.Unity.Launcher launcher-position Bottom`底部
+	`gsettings set com.canonical.Unity.Launcher launcher-position Bottom`底部<br>
 	`gsettings set com.canonical.Unity.Launcher launcher-position Left`左侧
 
 ### II. 主题配置
@@ -104,3 +106,6 @@
 	内包含括号匹配,html标签匹配,powerline配置(可能需要改动),cpp.sh.java.py的文件头自动输入,插件的配置(F3打开nerdtree,F4打开taglist)
 
 ## 参考
+[CSDN博客](https://blog.csdn.net/qq_35208390/article/details/78441013)<br>
+[powerline](https://www.linuxprobe.com/use-powerline-for-bash.html)<br>
+[vim插件](https://blog.csdn.net/zcube/article/details/42525973)<br>
