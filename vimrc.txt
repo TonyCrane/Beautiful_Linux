@@ -1,0 +1,148 @@
+﻿set nu
+syntax on
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set laststatus=2
+set cmdheight=2
+set scrolloff=4
+set smartindent
+set autoindent
+set showcmd
+set mouse=a
+inoremap ( ()<ESC>i
+inoremap { {}<ESC>i
+inoremap {<CR> {<CR>}<ESC>O
+inoremap [ []<ESC>i
+inoremap " ""<ESC>i
+inoremap ' ''<ESC>i
+colorschem molokai
+
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+set t_Co=256
+
+set foldenable
+set foldmethod=manual
+if version >= 603
+	set helplang=cn
+	set encoding=utf-8
+endif
+set termencoding=utf-8
+set encoding=utf-8
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+
+au BufRead,BufNewFile *.cpp set filetype=cpp
+au BufRead,BufNewFile *.sh set filetype=sh
+au BufRead,BufNewFile *.java set filetype=java
+au BufRead,BufNewFile *.sh set filetype=sh
+"文件标题
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java,*.py exec ":call StTitle()"
+func StTitle()
+	if &filetype == 'sh' || &filetype == 'python'
+		call setline(1,"\##############################################################")
+		call append(line("."), "\#  > File Name        : ".expand("%"))
+		call append(line(".")+1, "\#  > Author           : Tony")
+		call append(line(".")+2, "\#  > Created Time     : ".strftime("%c"))
+		call append(line(".")+3, "\##############################################################")
+		call append(line(".")+4, "")
+	else
+		call setline(1,"/*************************************************************")
+		call append(line("."), " *  > File Name        : ".expand("%"))
+		call append(line(".")+1, " *  > Author           : Tony")
+		call append(line(".")+2, " *  > Created Time     : ".strftime("%c"))
+		call append(line(".")+3, "**************************************************************/")
+		call append(line(".")+4, "")
+	endif
+	if &filetype == 'sh'
+		call append(line(".")+5, "\#!/bin/bash")
+		call append(line(".")+6, "")
+	endif
+	if &filetype == 'cpp'
+		call append(line(".")+5, "#include<bits/stdc++.h>")
+		call append(line(".")+6, "using namespace std;")
+		call append(line(".")+7, "")
+		call append(line(".")+8, "int main()")
+		call append(line(".")+9, "{")
+		call append(line(".")+10, "    ")
+		call append(line(".")+11, "    return 0;")
+		call append(line(".")+12, "}")
+	endif
+endfunc
+
+map <F5> :call Run()<CR>
+func! Run()
+	exec "w"
+	if &filetype == 'cpp'
+		exec "!run"
+	elseif &filetype == 'java'
+		exec "!javac %"
+		exec "!java %<"
+	endif
+endfunc
+
+set completeopt=preview,menu
+filetype on
+
+" pathogen
+execute pathogen#infect()
+" NERDTree
+map <silent> <F3> :NERDTreeToggle<CR>
+" Taglist
+map <silent> <F4> :TlistToggle<CR>
+
+if &filetype == 'html'
+	inoremap ) <c-r>=ClosePair(')')<CR>
+	inoremap ] <c-r>=ClosePair(']')<CR>
+	inoremap } <c-r>=CloseBracket()<CR>
+	inoremap " <c-r>=QuoteDelim('"')<CR>
+	inoremap ' <c-r>=QuoteDelim("'")<CR>
+ 
+	function ClosePair(char)
+		if getline('.')[col('.') - 1] == a:char
+			return "\<Right>"
+		else
+			return a:char
+		endif
+	endf
+ 
+	function CloseBracket()
+		if match(getline(line('.') + 1), '\s*}') < 0
+			return "\<CR>}"
+		else
+			return "\<Esc>j0f}a"
+		endif
+	endf
+ 
+	function QuoteDelim(char)
+		let line = getline('.')
+		let col = col('.')
+		if line[col - 2] == "\\"
+			"Inserting a quoted quotation mark into the string
+			return a:char
+		elseif line[col - 1] == a:char
+			"Escaping out of the string
+			return "\<Right>"
+		else
+			"Starting a string
+			return a:char.a:char."\<Esc>i"
+		endif
+	endf
+
+	" html自动补全
+	autocmd BufNewFile *  setlocal filetype=html
+	function! InsertHtmlTag()
+		let pat = '\c<\w\+\s*\(\s\+\w\+\s*=\s*[''#$;,()."a-z0-9]\+\)*\s*>'
+		normal! a>
+		let save_cursor = getpos('.')
+		let result = matchstr(getline(save_cursor[1]), pat)
+		"if (search(pat, 'b', save_cursor[1]) && searchpair('<','','>','bn',0,  getline('.')) > 0)
+		if (search(pat, 'b', save_cursor[1]))
+			normal! lyiwf>
+			normal! a</
+			normal! p
+			normal! a>
+		endif
+		:call cursor(save_cursor[1], save_cursor[2], save_cursor[3])
+	endfunction
+	inoremap > <ESC>:call InsertHtmlTag()<CR>a<CR><Esc>O
+endif
