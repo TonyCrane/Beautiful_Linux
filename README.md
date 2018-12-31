@@ -109,3 +109,6 @@
 [CSDN博客](https://blog.csdn.net/qq_35208390/article/details/78441013)<br>
 [powerline](https://www.linuxprobe.com/use-powerline-for-bash.html)<br>
 [vim插件](https://blog.csdn.net/zcube/article/details/42525973)<br>
+[monaco powerline字体](https://github.com/ocxo/monaco-powerline-vim)<br>
+[monokai主题](https://github.com/sickill/vim-monokai)<br>
+[WPS](http://www.wps.cn/product/wpslinux/)
