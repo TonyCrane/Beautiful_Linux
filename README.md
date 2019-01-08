@@ -50,20 +50,25 @@
 	`gsettings set com.canonical.Unity.Launcher launcher-position Left`左侧
 
 ### II. 主题配置
+
 - 安装 Unity-tweak-tool<br>
-	`sudo apt install unity-tweak-tool`
+  `sudo apt install unity-tweak-tool`<br>
+  如果出现报错需要安装缺失的包
+
 - 安装 Flatabulous 主题<br>
-	`sudo add-apt-repository ppa:noobslab/themes`<br>
-	`sudo apt update`<br>
-	`sudo apt install flatabulous-theme`主题<br>
-	`sudo add-apt-repository ppa:noobslab/icons`<br>
-	`sudo apt update`<br>
-	`sudo apt install ultra-flat-icons`图标<br>
-	unity-tweak-tool -> 主题/图标
+  `sudo add-apt-repository ppa:noobslab/themes`<br>
+  `sudo apt update`<br>
+  `sudo apt install flatabulous-theme`主题<br>
+  `sudo add-apt-repository ppa:noobslab/icons`<br>
+  `sudo apt update`<br>
+  `sudo apt install ultra-flat-icons`图标<br>
+  unity-tweak-tool -> 主题/图标
+
 - 字体<br>
-	Monaco Powerline 也可以选择其他字体,但一定要支持Powerline的,否则后文会出现乱码
+  Monaco Powerline 也可以选择其他字体,但一定要支持Powerline的,否则后文会出现乱码
 
 ### III. 终端Terminal美化
+
 - Terminal zsh<br>
 	`sudo apt install zsh`<br>
 	`git clone https://github.com/robbyrussell/oh-my-zsh.git`<br>
